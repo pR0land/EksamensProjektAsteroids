@@ -12,6 +12,7 @@ void draw(){
   background(0);
   player1.playerRotate();
   player1.playerMove();
+  player1.checkPlayerEdges();
   player1.drawPlayer();
 }
 
