@@ -45,7 +45,7 @@ void draw(){
     }
     if(isShooting == true && lastMillis < millis()){
       shot1.add(new Shots());
-      lastMillis = millis()+500;
+      lastMillis = millis()+300;
     }
     for(int i=0; i<astroidesL.size();i++){
       astroidesL.get(i).displayAstroide();

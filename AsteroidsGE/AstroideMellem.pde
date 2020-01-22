@@ -1,8 +1,9 @@
 class AstroideM extends AstroideL{
   AstroideM(){
     this.size = 75;
-    this.speed =3;
-    this.direct = PVector.fromAngle(random(-90,90),deadAstroideDirect);
+    this.speed =2;
+    this.direct = PVector.fromAngle(radians(random(-90,90)),deadAstroideDirect);
+    this.direct.setMag(this.speed);
     this.pos = deadAsPos;
   }
   void dead(){
