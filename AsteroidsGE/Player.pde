@@ -9,7 +9,7 @@ class Player{
  float playerFaceY;
  color playerFaceColor = color(0,255,0);
  int angle = 0;
-  
+   
  Player(){
  playerPos = new PVector(width/2, height/2);
  playerFaceX = playerPos.x;
