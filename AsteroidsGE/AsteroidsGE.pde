@@ -5,14 +5,19 @@ boolean isShooting;
 long lastMillis;
 Player player1;
 Shots[] shot1;
-AstroideL[] astroides;
+AstroideL[] astroidesL;
+AstroideM[] astroidesM;
+AstroideS[] astroidesS;
+PVector deadAstroideDirect;
 
 void setup(){
   frameRate(60);
   size(800,800);
-  astroides = new AstroideL[0];
+  astroidesL = new AstroideL[0];
+  astroidesM = new AstroideM[0];
+  astroidesS = new AstroideS[0];
   for(int i=0; i<3; i++){
-    astroides = (AstroideL[])append(astroides, new AstroideL()); 
+    astroidesL = (AstroideL[])append(astroidesL, new AstroideL()); 
   }
   player1 = new Player();
   shot1 = new Shots[0];
@@ -32,10 +37,10 @@ void draw(){
     shot1 = (Shots[])append(shot1, new Shots());
     lastMillis = millis()+500;
   }
-  for(int i=0; i<astroides.length;i++){
-    astroides[i].displayAstroide();
-    astroides[i].astroideMove();
-    astroides[i].asCheckEdges();
+  for(int i=0; i<astroidesL.length;i++){
+    astroidesL[i].displayAstroide();
+    astroidesL[i].astroideMove();
+    astroidesL[i].asCheckEdges();
   }
 }
 
