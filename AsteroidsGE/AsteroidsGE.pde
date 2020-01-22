@@ -1,3 +1,4 @@
+int gameState = 1;
 boolean rightPressed;
 boolean leftPressed;
 boolean upPressed;
@@ -6,9 +7,11 @@ long lastMillis;
 Player player1;
 Shots[] shot1;
 AstroideL[] astroidesL;
+
 AstroideM[] astroidesM;
 AstroideS[] astroidesS;
 PVector deadAstroideDirect;
+
 
 void setup(){
   frameRate(60);
@@ -24,18 +27,21 @@ void setup(){
 }
 
 void draw(){
-  background(0);
-  player1.playerRotate();
-  player1.playerMove();
-  player1.checkPlayerEdges();
-  player1.drawPlayer();
+  if(gameState == 1){
+    background(0);
+    player1.playerRotate();
+    player1.playerMove();
+    player1.checkPlayerEdges();
+    player1.drawPlayer();
+    player1.playerCollision();
   
-  for(int i = 0; i < shot1.length; i++){
-    shot1[i].shotsDraw();
+    for(int i = 0; i < shot1.length; i++){
+      shot1[i].shotsDraw();
+      shot1[i].shotCollision();
   }
-  if(isShooting == true && lastMillis < millis()){
-    shot1 = (Shots[])append(shot1, new Shots());
-    lastMillis = millis()+500;
+    if(isShooting == true && lastMillis < millis()){
+      shot1 = (Shots[])append(shot1, new Shots());
+      lastMillis = millis()+500;
   }
   for(int i=0; i<astroidesL.length;i++){
     astroidesL[i].displayAstroide();
@@ -51,6 +57,9 @@ void draw(){
     astroidesL[i].displayAstroide();
     astroidesL[i].astroideMove();
     astroidesL[i].asCheckEdges();
+  }
+  if(gameState == 2){
+    background(50);
   }
 }
 

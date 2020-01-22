@@ -44,6 +44,24 @@ class Player{
    }
  }
  
+ void playerCollision(){
+   for(int i = 0; i < astroidesL.length; i++){
+     if(playerPos.x < astroidesL[i].pos.x+astroidesL[i].size/2 && playerPos.x > astroidesL[i].pos.x-astroidesL[i].size/2 && playerPos.y < astroidesL[i].pos.y+astroidesL[i].size/2 && playerPos.y > astroidesL[i].pos.y-astroidesL[i].size/2){
+       gameState = 2;
+     }
+   }
+   /*for(int i = 0; i < astroidesM.length; i++){
+     if(playerPos.x < astroidesM[i].pos.x+astroidesM[i].size/2 && playerPos.x > astroidesM[i].pos.x-astroidesM[i].size/2 && playerPos.y < astroidesM[i].pos.y+astroidesM[i].size/2 && playerPos.y > astroidesM[i].pos.y-astroidesM[i].size/2){
+       gameState = 2;
+     }
+   }
+   for(int i = 0; i < astroidesS.length; i++){
+     if(playerPos.x < astroidesS[i].pos.x+astroidesS[i].size/2 && playerPos.x > astroidesS[i].pos.x-astroidesS[i].size/2 && playerPos.y < astroidesS[i].pos.y+astroidesS[i].size/2 && playerPos.y > astroidesS[i].pos.y-astroidesS[i].size/2){
+       gameState = 2;
+     }
+   }*/
+ }
+ 
  void playerMove(){
    
    if(upPressed == true){
