@@ -8,10 +8,17 @@ Player player1;
 Shots[] shot1;
 AstroideL[] astroidesL;
 
+AstroideM[] astroidesM;
+AstroideS[] astroidesS;
+PVector deadAstroideDirect;
+
+
 void setup(){
   frameRate(60);
   size(800,800);
   astroidesL = new AstroideL[0];
+  astroidesM = new AstroideM[0];
+  astroidesS = new AstroideS[0];
   for(int i=0; i<3; i++){
     astroidesL = (AstroideL[])append(astroidesL, new AstroideL()); 
   }
@@ -36,11 +43,20 @@ void draw(){
       shot1 = (Shots[])append(shot1, new Shots());
       lastMillis = millis()+500;
   }
-    for(int i=0; i<astroidesL.length;i++){
-      astroidesL[i].displayAstroide();
-      astroidesL[i].astroideMove();
-      astroidesL[i].asCheckEdges();
-    }
+  for(int i=0; i<astroidesL.length;i++){
+    astroidesL[i].displayAstroide();
+    astroidesL[i].astroideMove();
+    astroidesL[i].asCheckEdges();
+  }
+  for(int i=0; i<astroidesM.length;i++){
+    astroidesL[i].displayAstroide();
+    astroidesL[i].astroideMove();
+    astroidesL[i].asCheckEdges();
+  }
+  for(int i=0; i<astroidesS.length;i++){
+    astroidesL[i].displayAstroide();
+    astroidesL[i].astroideMove();
+    astroidesL[i].asCheckEdges();
   }
   if(gameState == 2){
     background(50);

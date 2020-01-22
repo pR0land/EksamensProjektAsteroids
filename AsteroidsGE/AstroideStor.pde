@@ -40,4 +40,10 @@ class AstroideL{
       this.pos.y = height + (this.size/2+7);
     }
   }
+  void dead(){
+   deadAstroideDirect = new PVector(this.pos.x,this.pos.y);
+   for(int i=0; i<2;i++){
+    astroidesM = (AstroideM[])append(astroidesM, new AstroideM());  
+   }
+  }
 }
