@@ -42,6 +42,16 @@ void draw(){
     astroidesL[i].astroideMove();
     astroidesL[i].asCheckEdges();
   }
+  for(int i=0; i<astroidesM.length;i++){
+    astroidesL[i].displayAstroide();
+    astroidesL[i].astroideMove();
+    astroidesL[i].asCheckEdges();
+  }
+  for(int i=0; i<astroidesS.length;i++){
+    astroidesL[i].displayAstroide();
+    astroidesL[i].astroideMove();
+    astroidesL[i].asCheckEdges();
+  }
 }
 
 void keyReleased(){
