@@ -3,11 +3,13 @@ class AstroideM extends AstroideL{
     this.size = 75;
     this.speed =3;
     this.direct = PVector.fromAngle(random(-90,90),deadAstroideDirect);
+    this.pos = deadAsPos;
   }
   void dead(){
-   deadAstroideDirect = new PVector(this.pos.x,this.pos.y);
+   deadAstroideDirect = new PVector(this.direct.x,this.direct.y);
+   deadAsPos = new PVector(this.pos.x,this.pos.y);
    for(int i=0; i<2;i++){
-    astroidesS = (AstroideS[])append(astroidesS, new AstroideS());  
+    astroidesS.add(new AstroideS());  
    }
   }
 }

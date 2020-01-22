@@ -5,25 +5,25 @@ boolean upPressed;
 boolean isShooting;
 long lastMillis;
 Player player1;
-Shots[] shot1;
-AstroideL[] astroidesL;
-
-AstroideM[] astroidesM;
-AstroideS[] astroidesS;
+ArrayList<Shots> shot1;
+ArrayList<AstroideL> astroidesL;
+ArrayList<AstroideM>astroidesM;
+ArrayList<AstroideS> astroidesS;
 PVector deadAstroideDirect;
+PVector deadAsPos;
 
 
 void setup(){
   frameRate(60);
   size(800,800);
-  astroidesL = new AstroideL[0];
-  astroidesM = new AstroideM[0];
-  astroidesS = new AstroideS[0];
+  astroidesL = new ArrayList<AstroideL>(0);
+  astroidesM = new ArrayList<AstroideM>(0);
+  astroidesS = new ArrayList<AstroideS>(0);
   for(int i=0; i<3; i++){
-    astroidesL = (AstroideL[])append(astroidesL, new AstroideL()); 
+    astroidesL.add(new AstroideL()); 
   }
   player1 = new Player();
-  shot1 = new Shots[0];
+  shot1 = new ArrayList<Shots>(0);
 }
 
 void draw(){
@@ -35,31 +35,36 @@ void draw(){
     player1.drawPlayer();
     player1.playerCollision();
   
-    for(int i = 0; i < shot1.length; i++){
-      shot1[i].shotsDraw();
-      shot1[i].shotCollision();
-  }
+    for(int i = 0; i < shot1.size(); i++){
+      shot1.get(i).shotsDraw();
+      shot1.get(i).shotCollision();
+      if(shot1.get(i).shotHit == true){
+         shot1.remove(i);
+      }
+      println(shot1.size());
+    }
     if(isShooting == true && lastMillis < millis()){
-      shot1 = (Shots[])append(shot1, new Shots());
+      shot1.add(new Shots());
       lastMillis = millis()+500;
-  }
-  for(int i=0; i<astroidesL.length;i++){
-    astroidesL[i].displayAstroide();
-    astroidesL[i].astroideMove();
-    astroidesL[i].asCheckEdges();
-  }
-  for(int i=0; i<astroidesM.length;i++){
-    astroidesL[i].displayAstroide();
-    astroidesL[i].astroideMove();
-    astroidesL[i].asCheckEdges();
-  }
-  for(int i=0; i<astroidesS.length;i++){
-    astroidesL[i].displayAstroide();
-    astroidesL[i].astroideMove();
-    astroidesL[i].asCheckEdges();
-  }
-  if(gameState == 2){
-    background(50);
+    }
+    for(int i=0; i<astroidesL.size();i++){
+      astroidesL.get(i).displayAstroide();
+      astroidesL.get(i).astroideMove();
+      astroidesL.get(i).asCheckEdges();
+    }
+    for(int i=0; i<astroidesM.size();i++){
+      astroidesM.get(i).displayAstroide();
+      astroidesM.get(i).astroideMove();
+      astroidesM.get(i).asCheckEdges();
+    }
+    for(int i=0; i<astroidesS.size();i++){
+      astroidesS.get(i).displayAstroide();
+      astroidesS.get(i).astroideMove();
+      astroidesS.get(i).asCheckEdges();
+    }
+    if(gameState == 2){
+      background(50);
+    }
   }
 }
 

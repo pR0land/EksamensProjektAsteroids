@@ -45,21 +45,21 @@ class Player{
  }
  
  void playerCollision(){
-   for(int i = 0; i < astroidesL.length; i++){
-     if(playerPos.x < astroidesL[i].pos.x+astroidesL[i].size/2 && playerPos.x > astroidesL[i].pos.x-astroidesL[i].size/2 && playerPos.y < astroidesL[i].pos.y+astroidesL[i].size/2 && playerPos.y > astroidesL[i].pos.y-astroidesL[i].size/2){
+   for(int i = 0; i < astroidesL.size(); i++){
+     if(playerPos.x < astroidesL.get(i).pos.x+astroidesL.get(i).size/2 && playerPos.x > astroidesL.get(i).pos.x-astroidesL.get(i).size/2 && playerPos.y < astroidesL.get(i).pos.y+astroidesL.get(i).size/2 && playerPos.y > astroidesL.get(i).pos.y-astroidesL.get(i).size/2){
        gameState = 2;
      }
    }
-   /*for(int i = 0; i < astroidesM.length; i++){
-     if(playerPos.x < astroidesM[i].pos.x+astroidesM[i].size/2 && playerPos.x > astroidesM[i].pos.x-astroidesM[i].size/2 && playerPos.y < astroidesM[i].pos.y+astroidesM[i].size/2 && playerPos.y > astroidesM[i].pos.y-astroidesM[i].size/2){
+   for(int i = 0; i < astroidesM.size(); i++){
+     if(playerPos.x < astroidesM.get(i).pos.x+astroidesM.get(i).size/2 && playerPos.x > astroidesM.get(i).pos.x-astroidesM.get(i).size/2 && playerPos.y < astroidesM.get(i).pos.y+astroidesM.get(i).size/2 && playerPos.y > astroidesM.get(i).pos.y-astroidesM.get(i).size/2){
        gameState = 2;
      }
    }
-   for(int i = 0; i < astroidesS.length; i++){
-     if(playerPos.x < astroidesS[i].pos.x+astroidesS[i].size/2 && playerPos.x > astroidesS[i].pos.x-astroidesS[i].size/2 && playerPos.y < astroidesS[i].pos.y+astroidesS[i].size/2 && playerPos.y > astroidesS[i].pos.y-astroidesS[i].size/2){
+   for(int i = 0; i < astroidesS.size(); i++){
+     if(playerPos.x < astroidesS.get(i).pos.x+astroidesS.get(i).size/2 && playerPos.x > astroidesS.get(i).pos.x-astroidesS.get(i).size/2 && playerPos.y < astroidesS.get(i).pos.y+astroidesS.get(i).size/2 && playerPos.y > astroidesS.get(i).pos.y-astroidesS.get(i).size/2){
        gameState = 2;
      }
-   }*/
+   }
  }
  
  void playerMove(){
