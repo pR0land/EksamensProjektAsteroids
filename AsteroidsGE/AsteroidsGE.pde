@@ -41,7 +41,6 @@ void draw(){
       if(shot1.get(i).shotHit == true){
          shot1.remove(i);
       }
-      println(shot1.size());
     }
     if(isShooting == true && lastMillis < millis()){
       shot1.add(new Shots());
@@ -56,6 +55,7 @@ void draw(){
       astroidesM.get(i).displayAstroide();
       astroidesM.get(i).astroideMove();
       astroidesM.get(i).asCheckEdges();
+      println(astroidesM.get(i).direct);
     }
     for(int i=0; i<astroidesS.size();i++){
       astroidesS.get(i).displayAstroide();

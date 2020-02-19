@@ -2,8 +2,10 @@ class AstroideM extends AstroideL{
   AstroideM(){
     this.size = 75;
     this.speed =2;
-    this.direct = PVector.fromAngle(radians(random(-90,90)),deadAstroideDirect);
+    int a = int(random(-90,90));
+    this.direct = deadAstroideDirect.rotate(radians(a));
     this.direct.setMag(this.speed);
+        println(this.direct);
     this.pos = deadAsPos;
   }
   void dead(){
