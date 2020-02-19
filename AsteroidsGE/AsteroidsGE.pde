@@ -1,4 +1,5 @@
 int gameState = 1;
+boolean alive = true;
 boolean rightPressed;
 boolean leftPressed;
 boolean upPressed;

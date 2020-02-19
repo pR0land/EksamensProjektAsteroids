@@ -1,6 +1,7 @@
 class Player{
  int playerHeight = 50;
  int playerWidth = 50;
+ int playerHealth = 3;
  PVector playerPos;
  color playerColor = color(255);
  int playerFaceHeight = 10;
@@ -46,22 +47,27 @@ class Player{
  
  void playerCollision(){
    for(int i = 0; i < astroidesL.size(); i++){
-     if(playerPos.x < astroidesL.get(i).pos.x+astroidesL.get(i).size/2 && playerPos.x > astroidesL.get(i).pos.x-astroidesL.get(i).size/2 && playerPos.y < astroidesL.get(i).pos.y+astroidesL.get(i).size/2 && playerPos.y > astroidesL.get(i).pos.y-astroidesL.get(i).size/2){
-       gameState = 2;
-     }
+     boolean collision = circleRect(astroidesL.get(i).pos.x,astroidesL.get(i).pos.y,astroidesL.get(i).size/2, playerPos.x, playerPos.y, playerWidth/2, playerHeight/2);
+       if (collision){
+         playerHealth--;
+         dead();
+       }
    }
    for(int i = 0; i < astroidesM.size(); i++){
-     if(playerPos.x < astroidesM.get(i).pos.x+astroidesM.get(i).size/2 && playerPos.x > astroidesM.get(i).pos.x-astroidesM.get(i).size/2 && playerPos.y < astroidesM.get(i).pos.y+astroidesM.get(i).size/2 && playerPos.y > astroidesM.get(i).pos.y-astroidesM.get(i).size/2){
-       gameState = 2;
-     }
+     boolean collision = circleRect(astroidesM.get(i).pos.x,astroidesM.get(i).pos.y,astroidesM.get(i).size/2, playerPos.x, playerPos.y, playerWidth/2, playerHeight/2);
+       if (collision){
+         playerHealth--;
+         dead();
+       }
    }
    for(int i = 0; i < astroidesS.size(); i++){
-     if(playerPos.x < astroidesS.get(i).pos.x+astroidesS.get(i).size/2 && playerPos.x > astroidesS.get(i).pos.x-astroidesS.get(i).size/2 && playerPos.y < astroidesS.get(i).pos.y+astroidesS.get(i).size/2 && playerPos.y > astroidesS.get(i).pos.y-astroidesS.get(i).size/2){
-       gameState = 2;
-     }
+     boolean collision = circleRect(astroidesS.get(i).pos.x,astroidesS.get(i).pos.y,astroidesS.get(i).size/2, playerPos.x, playerPos.y, playerWidth/2, playerHeight/2);
+       if (collision){
+         playerHealth--;
+         dead();
+       }
    }
- }
- 
+ } 
  void playerMove(){
    
    if(upPressed == true){
