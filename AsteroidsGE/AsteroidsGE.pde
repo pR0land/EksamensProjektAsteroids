@@ -1,5 +1,8 @@
 int gameState = 1;
 boolean alive = true;
+boolean clearBig = true;
+boolean clearMedium = true;
+boolean clearSmall = true;
 boolean rightPressed;
 boolean leftPressed;
 boolean upPressed;
@@ -30,6 +33,10 @@ void setup(){
 void draw(){
   if(gameState == 1){
     background(0);
+    println(alive);
+    rectMode(CENTER);
+    rect(width/2,height/2,200,200);
+    rectMode(CORNER);
     if(alive == true){
     player1.playerRotate();
     player1.playerMove();
@@ -49,6 +56,38 @@ void draw(){
       lastMillis = millis()+300;
     }
     }
+    else if(alive == false){
+      for(int i = 0; i < astroidesL.size(); i++){
+      if(astroidesL.get(i).pos.x < width/2 + 100 && astroidesL.get(i).pos.x > width/2 - 100 && astroidesL.get(i).pos.y < height/2 + 100 || astroidesL.get(i).pos.y > height/2 - 100){
+        player1.dead();
+        clearBig = false;
+      }
+      else{
+        clearBig = true;
+      }
+    }
+      for(int i = 0; i < astroidesM.size(); i++){
+      if(astroidesM.get(i).pos.x < width/2 + 100 && astroidesM.get(i).pos.x > width/2 - 100 && astroidesM.get(i).pos.y < height/2 + 100 || astroidesM.get(i).pos.y > height/2 - 100){
+        player1.dead();
+        clearMedium = false;
+      }
+      else{
+        clearMedium = true;
+      }
+    }
+      for(int i = 0; i < astroidesS.size(); i++){
+      if(astroidesS.get(i).pos.x < width/2 + 100 && astroidesS.get(i).pos.x > width/2 - 100 && astroidesS.get(i).pos.y < height/2 + 100 || astroidesS.get(i).pos.y > height/2 - 100){
+        player1.dead();
+        clearSmall = false;
+      }
+      else{
+        clearSmall = true;
+      }
+    }
+    if(clearBig == true && clearMedium == true && clearSmall == true){
+    alive = true;
+    }
+  }
     for(int i=0; i<astroidesL.size();i++){
       astroidesL.get(i).displayAstroide();
       astroidesL.get(i).astroideMove();
@@ -65,8 +104,8 @@ void draw(){
       astroidesS.get(i).astroideMove();
       astroidesS.get(i).asCheckEdges();
     }
-    if(gameState == 2){
-      background(50);
+    if(player1.playerHealth <= 0){
+      player1.playerColor = color(255,0,0);
     }
   }
 }
