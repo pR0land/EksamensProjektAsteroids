@@ -79,4 +79,45 @@ class Player{
    angle = angle -5;
    } 
  }
+ 
+ boolean circleRect (float ax, float ay,float aSize, float px, float py, float pWidth, float pHeight){
+        
+        //midlertidige variabler til kanterne
+        float testX = ax;
+        float testY = ay;
+        
+        //hvilken kant på firkanten er tættest på
+        if (ax < px){
+          testX = px-pWidth; //test venstre kant
+        }
+        else if (ax > px+pWidth){
+          testX = px+pWidth; //test på højre kant
+        }
+        if (ay < py){
+          testY = py-pHeight; //test på toppen
+        }
+        else if (ay > py+pHeight){
+          testY = py+pHeight; //test på bunden
+        }
+        
+        //find distancen til nærmeste kant
+        float distX = ax-testX;
+        float distY = ay-testY;
+        float distance = sqrt((distX*distX) + (distY*distY));
+        
+        //hvis distancen er mindre end radius på asteroiden er der kollision
+        if(distance <= aSize){
+          return true;
+        }
+        return false;
+ }
+
+  void dead(){
+     playerPos = new PVector(width/2, height/2);
+     alive = false;
+  }
+  void respawn(){
+     playerPos = new PVector(width/2, height/2);
+     alive = true;
+  }
 }
