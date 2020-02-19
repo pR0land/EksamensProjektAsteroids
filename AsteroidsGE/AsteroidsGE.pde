@@ -30,6 +30,7 @@ void setup(){
 void draw(){
   if(gameState == 1){
     background(0);
+    if(alive == true){
     player1.playerRotate();
     player1.playerMove();
     player1.checkPlayerEdges();
@@ -46,6 +47,7 @@ void draw(){
     if(isShooting == true && lastMillis < millis()){
       shot1.add(new Shots());
       lastMillis = millis()+300;
+    }
     }
     for(int i=0; i<astroidesL.size();i++){
       astroidesL.get(i).displayAstroide();
