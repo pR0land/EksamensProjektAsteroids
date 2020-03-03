@@ -121,6 +121,9 @@ class Player{
   void dead(){
      playerPos = new PVector(width/2, height/2);
      alive = false;
+     //clearSmall = false;
+     //clearMedium = false;
+     clearBig = false;
   }
   void respawn(){
      playerPos = new PVector(width/2, height/2);

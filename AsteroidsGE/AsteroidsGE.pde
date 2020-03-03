@@ -35,7 +35,7 @@ void draw(){
     background(0);
     println(alive);
     rectMode(CENTER);
-    rect(width/2,height/2,200,200);
+    rect(width/2,height/2,162.5,162.5);
     rectMode(CORNER);
     if(alive == true){
     player1.playerRotate();
@@ -57,17 +57,29 @@ void draw(){
     }
     }
     else if(alive == false){
+      if(clearBig == true && clearMedium == true && clearSmall == true){
+    alive = true;
+    }
       for(int i = 0; i < astroidesL.size(); i++){
-      if(astroidesL.get(i).pos.x < width/2 + 100 && astroidesL.get(i).pos.x > width/2 - 100 && astroidesL.get(i).pos.y < height/2 + 100 || astroidesL.get(i).pos.y > height/2 - 100){
-        player1.dead();
+      float lDist = dist(width/2,height/2,astroidesL.get(i).pos.x,astroidesL.get(i).pos.y);
+      println(lDist);  
+        if(lDist < astroidesL.get(i).size/2+200){
+          break;
+          }
+          println("hej");
+        clearBig = true;
+      }
+      /*if(astroidesL.get(i).pos.x < width/2 + 100 && astroidesL.get(i).pos.x > width/2 - 100 && astroidesL.get(i).pos.y < height/2 + 100 && astroidesL.get(i).pos.y > height/2 - 100){
+        //player1.dead();
+        alive = false;
         clearBig = false;
       }
       else{
         clearBig = true;
-      }
+      }*/
     }
-      for(int i = 0; i < astroidesM.size(); i++){
-      if(astroidesM.get(i).pos.x < width/2 + 100 && astroidesM.get(i).pos.x > width/2 - 100 && astroidesM.get(i).pos.y < height/2 + 100 || astroidesM.get(i).pos.y > height/2 - 100){
+      /*for(int i = 0; i < astroidesM.size(); i++){
+      if(astroidesM.get(i).pos.x < width/2 + 100 && astroidesM.get(i).pos.x > width/2 - 100 && astroidesM.get(i).pos.y < height/2 + 100 && astroidesM.get(i).pos.y > height/2 - 100){
         player1.dead();
         clearMedium = false;
       }
@@ -76,17 +88,14 @@ void draw(){
       }
     }
       for(int i = 0; i < astroidesS.size(); i++){
-      if(astroidesS.get(i).pos.x < width/2 + 100 && astroidesS.get(i).pos.x > width/2 - 100 && astroidesS.get(i).pos.y < height/2 + 100 || astroidesS.get(i).pos.y > height/2 - 100){
+      if(astroidesS.get(i).pos.x < width/2 + 100 && astroidesS.get(i).pos.x > width/2 - 100 && astroidesS.get(i).pos.y < height/2 + 100 && astroidesS.get(i).pos.y > height/2 - 100){
         player1.dead();
         clearSmall = false;
       }
       else{
         clearSmall = true;
       }
-    }
-    if(clearBig == true && clearMedium == true && clearSmall == true){
-    alive = true;
-    }
+    }*/
   }
     for(int i=0; i<astroidesL.size();i++){
       astroidesL.get(i).displayAstroide();
@@ -108,7 +117,6 @@ void draw(){
       player1.playerColor = color(255,0,0);
     }
   }
-}
 
 void keyReleased(){
 if(keyCode == RIGHT){
