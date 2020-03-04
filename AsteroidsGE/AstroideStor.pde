@@ -4,7 +4,7 @@ class AstroideL{
   PVector direct;
   PVector pos;
   AstroideL(){
-    this.size = 125;
+    this.size = 100;
     this.speed = 1;
     //giver meteoren en tilfældig retning 
     this.direct = new PVector(random(-1,1),random(-1,1));
@@ -19,7 +19,7 @@ class AstroideL{
   void astroideMove(){
     //flytter astroiden i den tilfældige retningen den har fået
     pos.add(direct);
-    println(direct);
+  //  println(direct);
   }
   void displayAstroide(){
     //tegner astroiden
@@ -45,5 +45,9 @@ class AstroideL{
    for(int i=0; i<2;i++){
     astroidesM.add(new AstroideM(this.direct.copy().rotate(radians(random(-90,90))),pos.copy()));  
    }
+  }
+  void givePoints(){
+    score+= size;
+    highScore+= size;
   }
 }
