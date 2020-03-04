@@ -79,7 +79,7 @@ class Player{
    playerPos.add(forward);*/
    if(upPressed == true){
    playerAcceleration = new PVector(0,-4);
-   playerAcceleration.setMag(0.3);
+   playerAcceleration.setMag(0.25);
    playerAcceleration.rotate(radians(angle));
    playerVelocity.add(playerAcceleration);
    playerVelocity.limit(topSpeed);

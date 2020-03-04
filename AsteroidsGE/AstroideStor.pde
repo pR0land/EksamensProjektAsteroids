@@ -5,7 +5,7 @@ class AstroideL{
   PVector pos;
   AstroideL(){
     this.size = 125;
-    this.speed = 3;
+    this.speed = 1;
     //giver meteoren en tilfældig retning 
     this.direct = new PVector(random(-1,1),random(-1,1));
     //sætter længden på vectoren til speed
