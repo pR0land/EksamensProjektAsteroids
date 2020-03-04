@@ -2,7 +2,9 @@ class Player{
  int playerHeight = 50;
  int playerWidth = 50;
  int playerHealth = 3;
+ PVector playerVelocity;
  PVector playerPos;
+ PVector playerAcceleration;
  color playerColor = color(255);
  int playerFaceHeight = 10;
  int playerFaceWidth = 10;
@@ -10,11 +12,14 @@ class Player{
  float playerFaceY;
  color playerFaceColor = color(0,255,0);
  int angle = 0;
+ float topSpeed;
    
  Player(){
  playerPos = new PVector(width/2, height/2);
  playerFaceX = playerPos.x;
  playerFaceY = playerPos.y-20;
+ playerVelocity = new PVector(0,0);
+ topSpeed = 3;
  }
  
  void drawPlayer(){
@@ -69,12 +74,20 @@ class Player{
    }
  } 
  void playerMove(){
-   
-   if(upPressed == true){
-   PVector forward = new PVector(0,-4);
+   /*PVector forward = new PVector(0,-4);
    forward.rotate(radians(angle));
-   playerPos.add(forward);
+   playerPos.add(forward);*/
+   if(upPressed == true){
+   playerAcceleration = new PVector(0,-4);
+   playerAcceleration.setMag(0.3);
+   playerAcceleration.rotate(radians(angle));
+   playerVelocity.add(playerAcceleration);
+   playerVelocity.limit(topSpeed);
    }
+   playerPos.add(playerVelocity);
+   playerVelocity = playerVelocity.mult(0.985);
+   
+   //playerVelocity.rotate(radians(angle));
  }
  
  void playerRotate(){
@@ -120,10 +133,17 @@ class Player{
 
   void dead(){
      playerPos = new PVector(width/2, height/2);
+     playerVelocity = playerVelocity.mult(0);
      alive = false;
-     //clearSmall = false;
-     //clearMedium = false;
-     clearBig = false;
+     if(astroidesS.size() > 0){
+       clearSmall = false;
+     }
+     if(astroidesM.size() > 0){
+       clearMedium = false;
+     }
+     if(astroidesL.size() > 0){
+       clearBig = false;
+     }
   }
   void respawn(){
      playerPos = new PVector(width/2, height/2);

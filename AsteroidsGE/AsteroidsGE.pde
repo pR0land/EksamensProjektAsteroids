@@ -34,9 +34,9 @@ void draw(){
   if(gameState == 1){
     background(0);
     println(alive);
-    rectMode(CENTER);
-    rect(width/2,height/2,162.5,162.5);
-    rectMode(CORNER);
+    //ellipseMode(CENTER);
+    ellipse(width/2,height/2,175,175);
+    //ellipseMode(CORNER);
     if(alive == true){
     player1.playerRotate();
     player1.playerMove();
@@ -51,51 +51,49 @@ void draw(){
          shot1.remove(i);
       }
     }
-    if(isShooting == true && lastMillis < millis()){
-      shot1.add(new Shots());
-      lastMillis = millis()+300;
+      if(isShooting == true && lastMillis < millis()){
+        shot1.add(new Shots());
+        lastMillis = millis()+300;
+      }
     }
-    }
+    
     else if(alive == false){
       if(clearBig == true && clearMedium == true && clearSmall == true){
     alive = true;
     }
       for(int i = 0; i < astroidesL.size(); i++){
-      float lDist = dist(width/2,height/2,astroidesL.get(i).pos.x,astroidesL.get(i).pos.y);
-      println(lDist);  
-        if(lDist < astroidesL.get(i).size/2+200){
-          break;
-          }
-          println("hej");
-        clearBig = true;
-      }
-      /*if(astroidesL.get(i).pos.x < width/2 + 100 && astroidesL.get(i).pos.x > width/2 - 100 && astroidesL.get(i).pos.y < height/2 + 100 && astroidesL.get(i).pos.y > height/2 - 100){
-        //player1.dead();
-        alive = false;
-        clearBig = false;
-      }
-      else{
-        clearBig = true;
-      }*/
-    }
-      /*for(int i = 0; i < astroidesM.size(); i++){
-      if(astroidesM.get(i).pos.x < width/2 + 100 && astroidesM.get(i).pos.x > width/2 - 100 && astroidesM.get(i).pos.y < height/2 + 100 && astroidesM.get(i).pos.y > height/2 - 100){
-        player1.dead();
-        clearMedium = false;
-      }
-      else{
-        clearMedium = true;
-      }
-    }
+        float lDist = dist(width/2,height/2,astroidesL.get(i).pos.x,astroidesL.get(i).pos.y);
+        println(lDist);  
+          if(lDist > astroidesL.get(i).size+50){
+            clearBig = true;
+            }
+          else if(lDist < astroidesL.get(i).size/2+50){
+            clearBig = false;
+            break;
+          }        
+        }
+      for(int i = 0; i < astroidesM.size(); i++){
+        float mDist = dist(width/2,height/2,astroidesM.get(i).pos.x,astroidesM.get(i).pos.y);
+        //println(mDist);  
+          if(mDist > astroidesM.get(i).size+65){
+            clearMedium = true;
+            }
+          else if(mDist < astroidesM.get(i).size+65){
+            clearMedium = false;
+            break;
+          }        
+        }
       for(int i = 0; i < astroidesS.size(); i++){
-      if(astroidesS.get(i).pos.x < width/2 + 100 && astroidesS.get(i).pos.x > width/2 - 100 && astroidesS.get(i).pos.y < height/2 + 100 && astroidesS.get(i).pos.y > height/2 - 100){
-        player1.dead();
-        clearSmall = false;
+        float sDist = dist(width/2,height/2,astroidesS.get(i).pos.x,astroidesS.get(i).pos.y);
+        //println(sDist);  
+          if(sDist > astroidesS.get(i).size+100){
+            clearSmall = true;
+            }
+          else if(sDist < astroidesS.get(i).size+100){
+            clearSmall = false;
+            break;
+        }        
       }
-      else{
-        clearSmall = true;
-      }
-    }*/
   }
     for(int i=0; i<astroidesL.size();i++){
       astroidesL.get(i).displayAstroide();
@@ -117,6 +115,7 @@ void draw(){
       player1.playerColor = color(255,0,0);
     }
   }
+}
 
 void keyReleased(){
 if(keyCode == RIGHT){
