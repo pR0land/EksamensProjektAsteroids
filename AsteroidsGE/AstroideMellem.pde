@@ -4,7 +4,7 @@ class AstroideM extends AstroideL{
     this.speed =3;
     direct = oldDirect;
     direct.setMag(this.speed);
-        println(this.direct);
+       // println(this.direct);
     pos = oldPos;
   }
   void dead(){

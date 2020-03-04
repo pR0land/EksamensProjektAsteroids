@@ -13,6 +13,7 @@ ArrayList<Shots> shot1;
 ArrayList<AstroideL> astroidesL;
 ArrayList<AstroideM>astroidesM;
 ArrayList<AstroideS> astroidesS;
+long score;
 
 void setup(){
   frameRate(60);
@@ -25,14 +26,16 @@ void setup(){
   }
   player1 = new Player();
   shot1 = new ArrayList<Shots>(0);
+  score =0;
 }
 
 void draw(){
+  println(score);
   if(gameState == 1){
     background(0);
-    println(alive);
+    //println(alive);
     //ellipseMode(CENTER);
-    ellipse(width/2,height/2,175,175);
+    //ellipse(width/2,height/2,175,175);
     //ellipseMode(CORNER);
     if(alive == true){
     player1.playerRotate();
@@ -60,7 +63,7 @@ void draw(){
     }
       for(int i = 0; i < astroidesL.size(); i++){
         float lDist = dist(width/2,height/2,astroidesL.get(i).pos.x,astroidesL.get(i).pos.y);
-        println(lDist);  
+        //println(lDist);  
           if(lDist > astroidesL.get(i).size+50){
             clearBig = true;
             }
