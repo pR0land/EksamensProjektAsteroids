@@ -10,7 +10,6 @@ ArrayList<AstroideL> astroidesL;
 ArrayList<AstroideM>astroidesM;
 ArrayList<AstroideS> astroidesS;
 
-
 void setup(){
   frameRate(60);
   size(800,800);
