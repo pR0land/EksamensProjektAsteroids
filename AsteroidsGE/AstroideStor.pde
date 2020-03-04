@@ -9,7 +9,7 @@ class AstroideL{
     //giver meteoren en tilfældig retning 
     this.direct = new PVector(random(-1,1),random(-1,1));
     //sætter længden på vectoren til speed
-    this.direct.setMag(this.speed);
+    direct.setMag(speed);
     this.pos = new PVector(random(width),random(height));
     //for at sikre den ikke spawner oven i playeren, giver vi den en ny pos når den er i midten
     while(this.pos.x < width/2 + 200 && this.pos.x > width/2 - 200 && this.pos.y < height/2 + 200 && this.pos.y > height/2 - 200){
@@ -18,7 +18,8 @@ class AstroideL{
   }
   void astroideMove(){
     //flytter astroiden i den tilfældige retningen den har fået
-    this.pos.add(this.direct);
+    pos.add(direct);
+    println(direct);
   }
   void displayAstroide(){
     //tegner astroiden
@@ -41,10 +42,8 @@ class AstroideL{
     }
   }
   void dead(){
-   deadAstroideDirect = this.direct;
-   deadAsPos = new PVector(this.pos.x,this.pos.y);
    for(int i=0; i<2;i++){
-    astroidesM.add(new AstroideM());  
+    astroidesM.add(new AstroideM(this.direct.copy().rotate(radians(random(-90,90))),pos.copy()));  
    }
   }
 }

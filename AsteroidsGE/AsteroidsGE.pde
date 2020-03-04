@@ -9,8 +9,6 @@ ArrayList<Shots> shot1;
 ArrayList<AstroideL> astroidesL;
 ArrayList<AstroideM>astroidesM;
 ArrayList<AstroideS> astroidesS;
-PVector deadAstroideDirect;
-PVector deadAsPos;
 
 
 void setup(){
@@ -55,7 +53,7 @@ void draw(){
       astroidesM.get(i).displayAstroide();
       astroidesM.get(i).astroideMove();
       astroidesM.get(i).asCheckEdges();
-      println(astroidesM.get(i).direct);
+      //println(astroidesM.get(i).direct);
     }
     for(int i=0; i<astroidesS.size();i++){
       astroidesS.get(i).displayAstroide();
