@@ -44,8 +44,8 @@ boolean shotHit;
    }
    for(int i = 0; i < astroidesS.size(); i++){
      if(shotPos.x < astroidesS.get(i).pos.x+astroidesS.get(i).size/2 && shotPos.x > astroidesS.get(i).pos.x-astroidesS.get(i).size/2 && shotPos.y < astroidesS.get(i).pos.y+astroidesS.get(i).size/2 && shotPos.y > astroidesS.get(i).pos.y-astroidesS.get(i).size/2){
-       astroidesS.remove(i);
        astroidesS.get(i).givePoints();
+       astroidesS.remove(i);
        this.shotHit = true;
      }
    }

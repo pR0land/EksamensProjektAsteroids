@@ -14,6 +14,7 @@ ArrayList<AstroideL> astroidesL;
 ArrayList<AstroideM>astroidesM;
 ArrayList<AstroideS> astroidesS;
 long score;
+long highScore;
 
 void setup(){
   frameRate(60);
@@ -30,9 +31,12 @@ void setup(){
 }
 
 void draw(){
-  println(score);
+ // println(score);
   if(gameState == 1){
     background(0);
+    fill(255);
+    textSize(20);
+    text("Score: "+score,width-150,25);
     //println(alive);
     //ellipseMode(CENTER);
     //ellipse(width/2,height/2,175,175);
