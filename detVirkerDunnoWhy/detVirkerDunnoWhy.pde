@@ -9,7 +9,7 @@ void setup(){
  m = new ArrayList<Me>(0);
  for(int i =0; i< 2; i++){
    int a = int(random(-90,90));
-  m.add(new Me(di1.rotate(radians(a)))); 
+  m.add(new Me(di1.copy().rotate(radians(a)))); 
  }
 }
 void draw(){
