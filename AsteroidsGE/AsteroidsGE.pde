@@ -1,13 +1,10 @@
 int gameState = 1;
-boolean alive = true;
-boolean clearBig = true;
-boolean clearMedium = true;
-boolean clearSmall = true;
-boolean rightPressed;
-boolean leftPressed;
-boolean upPressed;
+int waveNr =1;
+boolean waveChanged =true;
+boolean alive = true,clearBig = true,clearMedium = true,clearSmall = true;
+boolean rightPressed,leftPressed,upPressed;
 boolean isShooting;
-long lastMillis;
+long lastMillisShot,lastMillisWave;
 Player player1;
 ArrayList<Shots> shot1;
 ArrayList<AstroideL> astroidesL;
@@ -31,8 +28,8 @@ void setup(){
 }
 
 void draw(){
- // println(score);
-  if(gameState == 1){
+  //println(shot1.size());
+  if(gameState == 1){  
     background(0);
     fill(255);
     textSize(20);
@@ -55,9 +52,9 @@ void draw(){
          shot1.remove(i);
       }
     }
-      if(isShooting == true && lastMillis < millis()){
+      if(isShooting == true && lastMillisShot < millis()){
         shot1.add(new Shots());
-        lastMillis = millis()+300;
+        lastMillisShot = millis()+300;
       }
     }
     
@@ -118,6 +115,31 @@ void draw(){
     if(player1.playerHealth <= 0){
       player1.playerColor = color(255,0,0);
     }
+    
+    if(astroidesL.size() <= 0 && astroidesM.size() <= 0 && astroidesS.size() <= 0 && waveChanged == true){
+        waveNr++;
+        waveChanged = false;
+        lastMillisWave = millis();
+    }
+    if(waveChanged == false && lastMillisWave +2500 < millis()){
+      fill(240,20,60);
+      textSize(50);
+      textAlign(CENTER,CENTER);
+      text("NEW WAVE INCOMING\n wave nr: "+waveNr,width/2,height/2); 
+      textAlign(CORNER);
+    }
+    if(waveChanged == false && lastMillisWave +5000 < millis()){
+       newWave(); 
+       waveChanged = true;
+    }
+  }
+}
+void newWave(){
+  for(int i=0; i<(int((waveNr+2)/2))*2;i++){
+    astroidesL.add(new AstroideL());
+  }
+  for(int i=0; i<(waveNr+2)%2;i++){
+    astroidesM.add(new AstroideM(new PVector(random(-1,1),random(-1,1)),astroidesL.get(i).pos.copy()));
   }
 }
 
