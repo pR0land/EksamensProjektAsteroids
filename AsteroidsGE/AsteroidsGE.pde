@@ -29,7 +29,7 @@ void setup(){
 
 void draw(){
   //println(shot1.size());
-  if(gameState == 1){
+  if(gameState == 1){  
     background(0);
     fill(255);
     textSize(20);
