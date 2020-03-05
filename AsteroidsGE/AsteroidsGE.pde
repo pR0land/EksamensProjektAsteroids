@@ -11,10 +11,11 @@ long lastMillis;
 Player player1;
 ArrayList<Shots> shot1;
 ArrayList<AstroideL> astroidesL;
-ArrayList<AstroideM>astroidesM;
+ArrayList<AstroideM> astroidesM;
 ArrayList<AstroideS> astroidesS;
 long score;
 long highScore;
+color startBtn = color(190);
 
 void setup(){
   frameRate(60);
@@ -37,10 +38,6 @@ void draw(){
     fill(255);
     textSize(20);
     text("Score: "+score,width-150,25);
-    //println(alive);
-    //ellipseMode(CENTER);
-    //ellipse(width/2,height/2,175,175);
-    //ellipseMode(CORNER);
     if(alive == true){
     player1.playerRotate();
     player1.playerMove();
@@ -59,6 +56,9 @@ void draw(){
         shot1.add(new Shots());
         lastMillis = millis()+300;
       }
+      textSize(32);
+      fill(255);
+      text("Lives left: "+player1.playerHealth, 10, 50);
     }
     
     else if(alive == false){
@@ -115,9 +115,12 @@ void draw(){
       astroidesS.get(i).astroideMove();
       astroidesS.get(i).asCheckEdges();
     }
-    if(player1.playerHealth <= 0){
+  }
+  if(player1.playerHealth <= 0){
       player1.playerColor = color(255,0,0);
     }
+  if (gameState == 2){
+    drawMenu();
   }
 }
 
@@ -148,5 +151,68 @@ if(keyCode == UP){
     }
 if(keyCode == 'X'){
      isShooting = true;
+    }
+}
+
+void mousePressed(){
+ startGame();
+}
+
+void drawMenu(){
+  if(mouseX < width/2+125 && mouseX > width/2-125 && mouseY < height/2+30 && mouseY > height/2-30){
+    startBtn = color(220);
+  }
+  else{
+    startBtn = color(190);
+  }
+  background(0);
+  textSize(32);
+  fill(255);
+  text("Lives left: "+player1.playerHealth, 10, 50);
+  textAlign(CENTER);
+  textSize(80);
+  fill(128,0,0);
+  text("Game Over", width/2, height/2-50);
+  textAlign(LEFT);
+  fill(startBtn);
+  stroke(255);
+  rectMode(CENTER);
+  rect(width/2,height/2,250,60,5);
+  rectMode(CORNER);
+  noStroke();
+   textSize(32);
+  fill(10);
+  textAlign(CENTER);
+  text("Start Game", width/2, height/2+10);
+  textAlign(LEFT);
+}
+
+void startGame(){
+  if(gameState == 2){
+    if(mouseX < width/2+125 && mouseX > width/2-125 && mouseY < height/2+30 && mouseY > height/2-30){
+      clearBig = true;
+      clearMedium = true;
+      clearSmall = true;
+      alive = true;
+      shot1 = new ArrayList<Shots>(0);
+      player1 = new Player();
+      gameState = 1;
+      player1.playerHealth = 3;
+      for (int i = astroidesL.size() - 1; i >= 0; i--) {
+        astroidesL.remove(i);    
+      }
+      for (int i = astroidesM.size() - 1; i >= 0; i--) {
+        astroidesM.remove(i);    
+      }
+      for (int i = astroidesS.size() - 1; i >= 0; i--) {
+        astroidesS.remove(i);    
+      }
+for(int i=0; i<3; i++){
+        astroidesL.add(new AstroideL()); 
+      }
+      
+     
+      //score = 0;
+      }
     }
 }

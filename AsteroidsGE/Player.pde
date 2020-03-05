@@ -15,11 +15,11 @@ class Player{
  float topSpeed;
    
  Player(){
- playerPos = new PVector(width/2, height/2);
- playerFaceX = playerPos.x;
- playerFaceY = playerPos.y-20;
- playerVelocity = new PVector(0,0);
- topSpeed = 3;
+   playerPos = new PVector(width/2, height/2);
+   playerFaceX = playerPos.x;
+   playerFaceY = playerPos.y-20;
+   playerVelocity = new PVector(0,0);
+   topSpeed = 3;
  }
  
  void drawPlayer(){
@@ -56,6 +56,9 @@ class Player{
        if (collision){
          playerHealth--;
          dead();
+         if(playerHealth == 0){
+           gameState = 2;
+         }
        }
    }
    for(int i = 0; i < astroidesM.size(); i++){
@@ -63,6 +66,9 @@ class Player{
        if (collision){
          playerHealth--;
          dead();
+         if(playerHealth == 0){
+           gameState = 2;
+         }
        }
    }
    for(int i = 0; i < astroidesS.size(); i++){
@@ -70,6 +76,9 @@ class Player{
        if (collision){
          playerHealth--;
          dead();
+         if(playerHealth == 0){
+           gameState = 2;
+         }
        }
    }
  } 
