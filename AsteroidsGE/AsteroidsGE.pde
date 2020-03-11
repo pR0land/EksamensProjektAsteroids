@@ -189,6 +189,8 @@ void drawMenu(){
   text("Lives left: "+player1.playerHealth, 10, 50);
   textAlign(CENTER);
   textSize(80);
+  fill(0,255,0);
+  text("Your score:" +score, width/2, height/2-150);
   fill(128,0,0);
   text("Game Over", width/2, height/2-50);
   textAlign(LEFT);
