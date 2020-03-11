@@ -11,7 +11,7 @@ ArrayList<AstroideL> astroidesL;
 ArrayList<AstroideM> astroidesM;
 ArrayList<AstroideS> astroidesS;
 long score;
-long highScore;
+long highScore = 0;
 color startBtn = color(190);
 
 void setup(){
@@ -188,6 +188,9 @@ void drawMenu(){
   fill(255);
   text("Lives left: "+player1.playerHealth, 10, 50);
   textAlign(CENTER);
+  textSize(60);
+  fill(0,200,0);
+  text("Highscore:"+ highScore, width/2, height/2-250);
   textSize(80);
   fill(0,255,0);
   text("Your score:" +score, width/2, height/2-150);
