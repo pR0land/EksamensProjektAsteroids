@@ -48,6 +48,8 @@ class AstroideL{
   }
   void givePoints(){
     score+= size;
-    highScore+= size;
+    if (score > highScore){
+      highScore = score;
+    }
   }
 }
