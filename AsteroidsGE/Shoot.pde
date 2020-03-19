@@ -49,5 +49,10 @@ boolean shotHit;
        this.shotHit = true;
      }
    }
+   for(int i = 0; i < shot1.size(); i++){
+       if(shotPos.x > width || shotPos.x < 0 || shotPos.y > height || shotPos.y < 0){
+         this.shotHit = true;
+       }
+   }
   }
 }
